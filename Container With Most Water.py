@@ -7,20 +7,19 @@ def maxArea(height):
     #         area = min_height * (idx2 - idx)
     #         if area > max_area:
     #             max_area = area
-    # second solution: start from the end and find the farthest container with the same height
-    # faster, but still too slow to get accepted
+    # second solution: start from both ends O(n)
     max_area = 0
     idx1 = 0
     idx2 = len(height) - 1
-    while idx1 < len(height) - 1:
+    while idx1 < idx2:
         area = min(height[idx1], height[idx2]) * (idx2 - idx1)
         if area > max_area:
             max_area = area
-        if height[idx2] >= height[idx1] or idx1 == (idx2 - 1) or max_area > height[idx1] * (idx2 - idx1 - 1):
+        if height[idx2] >= height[idx1]:
             idx1 += 1
-            idx2 = len(height) - 1
         else:
             idx2 -= 1
+
 
     return max_area
 
