@@ -27,22 +27,38 @@ class ListNode:
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
         # first solution. slow and not memory efficient
-        if not head or not head.next:
-            return head
-        temp1 = copy.deepcopy(head)
-        temp2 = copy.deepcopy(head.next)
+        # if not head or not head.next:
+        #     return head
+        # temp1 = copy.deepcopy(head)
+        # temp2 = copy.deepcopy(head.next)
+        # head = head.next
+        # head.next = temp1
+        # tail = head.next
+        # tail.next = temp2.next
+        # while tail.next and tail.next.next:
+        #     temp1 = copy.deepcopy(tail.next)
+        #     temp2 = copy.deepcopy(tail.next.next)
+        #     tail.next = tail.next.next
+        #     tail = tail.next
+        #     tail.next = temp1
+        #     tail = tail.next
+        #     tail.next = temp2.next
+
+        # second solution using only one temp var. faster, but still slow and not memory efficient
+        temp = copy.deepcopy(head)
         head = head.next
-        head.next = temp1
-        tail = head.next
-        tail.next = temp2.next
-        while tail.next and tail.next.next:
-            temp1 = copy.deepcopy(tail.next)
-            temp2 = copy.deepcopy(tail.next.next)
-            tail.next = tail.next.next
-            tail = tail.next
-            tail.next = temp1
-            tail = tail.next
-            tail.next = temp2.next
+        temp.next = head.next
+        head.next = temp
+        head2 = head
+        head2 = head2.next
+        while head2.next and head2.next.next:
+            temp = copy.deepcopy(head2.next)
+            head2.next = head2.next.next
+            head2 = head2.next
+            temp.next = head2.next
+            head2.next = temp
+            head2 = head2.next
+
         return head
 
 
