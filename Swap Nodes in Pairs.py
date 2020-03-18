@@ -26,9 +26,9 @@ class ListNode:
 
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
         # first solution. slow and not memory efficient
-        # if not head or not head.next:
-        #     return head
         # temp1 = copy.deepcopy(head)
         # temp2 = copy.deepcopy(head.next)
         # head = head.next
@@ -45,21 +45,35 @@ class Solution:
         #     tail.next = temp2.next
 
         # second solution using only one temp var. faster, but still slow and not memory efficient
-        temp = copy.deepcopy(head)
-        head = head.next
-        temp.next = head.next
-        head.next = temp
-        head2 = head
-        head2 = head2.next
-        while head2.next and head2.next.next:
-            temp = copy.deepcopy(head2.next)
-            head2.next = head2.next.next
-            head2 = head2.next
-            temp.next = head2.next
-            head2.next = temp
-            head2 = head2.next
+        # temp = copy.deepcopy(head)
+        # head = head.next
+        # temp.next = head.next
+        # head.next = temp
+        # head2 = head
+        # head2 = head2.next
+        # while head2.next and head2.next.next:
+        #     temp = copy.deepcopy(head2.next)
+        #     head2.next = head2.next.next
+        #     head2 = head2.next
+        #     temp.next = head2.next
+        #     head2.next = temp
+        #     head2 = head2.next
 
-        return head
+        # third solution
+        swap = ListNode(None)
+        new = swap
+        while head and head.next:
+            temp1 = head
+            temp2 = head.next
+            temp3 = head.next.next
+            new = temp2
+            new.next = temp1
+            new.next.next = temp3
+            new = new.next.next
+            head = head.next.next
+
+
+        return swap
 
 
 s= Solution()
