@@ -12,13 +12,9 @@ class Solution:
             return 0
         total = 0
         left = 0
+        slop = 0
         for idx in range(1, len(height)):
-            if height[idx] >= height[left]:
-                if idx == left + 1:
-                    # move the left side
-                    left = idx
-                else:
-                    pass
+            pass
 
 
         return total
