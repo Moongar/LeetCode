@@ -2,7 +2,6 @@ class Solution:
     def permuteUnique(self, nums):
         if len(nums) == 0:
             return [[]]
-        pre = [[nums[0]]]
         perms = [[] for x in range(len(nums))]
         perms[0].append([nums[0]])
         for i in range(1, len(nums)):
