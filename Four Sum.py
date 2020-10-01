@@ -13,6 +13,8 @@ class Solution:
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
+            if len(nums) < k or target < sum(nums[0:k]):
+                break
             self.backtrack(nums[i + 1:], target - nums[i], combs, path + [nums[i]], k - 1)
 
 
