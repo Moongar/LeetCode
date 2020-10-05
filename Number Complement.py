@@ -1,7 +1,7 @@
 class Solution:
     def findComplement(self, num: int) -> int:
         if num == 0:
-            return 0
+            return 1
         n = 1
         while n <= num:
             n = n << 1
